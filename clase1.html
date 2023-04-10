@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introducción &#8212; ACUS099 Procesamiento Digital de Señales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'clase1';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Señales y Sistemas" href="clase2.html" />
+    <link rel="prev" title="Instituto de Acústica: ACUS 099" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Instituto de Acústica: ACUS 099
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clase2.html">Señales y Sistemas</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/clase1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aprender-mas">Aprender más:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<h1>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<ul>
+<li><blockquote>
+<div><p>Procesamiento digital de señales se utiliza en numerosas aplicaciones, tales como en comunicaciones, análisis de señales biomédicas, ecología acústica, cuidado de la salud, minería de audio, vigilancia acústica, robótica y en <code class="docutils literal notranslate"><span class="pre">extracción</span> <span class="pre">de</span> <span class="pre">características</span> <span class="pre">acústicas</span></code> para el análisis de datos de audio. Actualmente, aprender procesamiento digital de señales es más importante que nunca porque proporciona la base para el aprendizaje automático de máquina (<code class="docutils literal notranslate"><span class="pre">machine</span> <span class="pre">learning</span></code>) y aprdendizaje profundo (<code class="docutils literal notranslate"><span class="pre">deep</span> <span class="pre">learning</span></code>) <span id="id1">[<a class="reference internal" href="#id20" title="Keshab K. Parhi. Teaching digital signal processing by partial flipping, active learning, and visualization: keeping students engaged with blended teaching. IEEE Signal Processing Magazine, 38(3):20-29, May 2021. doi:10.1109/MSP.2021.3052487.">Parhi, 2021</a>]</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Las <code class="docutils literal notranslate"><span class="pre">señales</span></code> se estudian porque transmiten <code class="docutils literal notranslate"><span class="pre">información</span></code>. En el Reino Animal, por ejemplo, se produce a diario una gran variedad de <code class="docutils literal notranslate"><span class="pre">señales</span> <span class="pre">acústicas</span></code>. Estas representan indicadores naturales de la riqueza de especies del paisaje, de la actividad acústica que hay en él y de la abundancia de individuos que allí habitan <span id="id2">[<a class="reference internal" href="#id18" title="C. A. Morrison, A. Aunins, Z. Benko, L. Brotons, T. Chodkiewicz, P. Chylarecki, V Escandell, D. P. Eskildsen, A. Gamero, S. Herrando, F. Jiguet, J. A. Kalas, J. Kamp, A. Klvanova, P. Kmecl, A. Lehikoinen, A. Lindstroem, C. Moshoj, D. G. Noble, I. J. Oien, J-Y Paquet, J. Reif, T. Sattler, B. S. Seaman, N. Teufelbauer, S. Trautmann, C. A. M. van Turnhout, P. Vorisek, and S. J. Butler. Bird population declines and species turnover are changing the acoustic properties of spring soundscapes. Nature Communications, NOV 2 2021. doi:10.1038/s41467-021-26488-1.">Morrison <em>et al.</em>, 2021</a>]</span>. Esas señales permiten, entre otras, que se fomente la cohesión de un grupo de animales, tales como ocurre con las aves. Permiten además, señalar la presencia de alimentos, amigos, o para advertir ataques de depredadores. También, ellas les permiten encontrar y evaluar posibles compañeros de apareamiento <span id="id3">[<a class="reference internal" href="#id15" title="Elsa Steinfath, Adrian Palacios-Muñoz, Julian R Rottschäfer, Deniz Yuezak, and Jan Clemens. Fast and accurate annotation of acoustic signals with deep neural networks. eLife, 10:e68837, nov 2021. URL: https://doi.org/10.7554/eLife.68837, doi:10.7554/eLife.68837.">Steinfath <em>et al.</em>, 2021</a>]</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>En la comunicación entre los seres humanos, por otra parte, las <code class="docutils literal notranslate"><span class="pre">señales</span></code> permiten transmitir información en distintas modalidades y que son enfatizadas diariamente, a través del uso de gestos de expresión afectiva. Son ejemplos importantes de señales la voz, las señales de posturas, señales de gestos con las manos y las señales faciales <span id="id4">[<a class="reference internal" href="#id17" title="Meng Liu, Yaocong Duan, Robin A. A. Ince, Chaona Chen, Oliver G. B. Garrod, Philippe G. Schyns, and Rachael E. Jack. Facial expressions elicit multiplexed perceptions of emotion categories and dimensions. Current Biology, 32(1):200+, JAN 10 2022. doi:10.1016/j.cub.2021.10.035.">Liu <em>et al.</em>, 2022</a>]</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>En el caso de la comunicación hombre-máquina, actualmente millones de personas en el mundo tienen dificultades para realizar ciertas acciones físicas cotidianas. Tal es el caso de personas mayores, o con diversas discapacitadas, que para caminar o desplazar algún objeto, requieren de asistentes personales, o bien, requieren de un <code class="docutils literal notranslate"><span class="pre">sistema</span> <span class="pre">interfaz</span> <span class="pre">hombre-máquina</span></code> que les ayude en tales actividades. Dicho <code class="docutils literal notranslate"><span class="pre">sistema</span></code> proporciona una modalidad de comunicación de información biológica entre los seres humanos y las máquinas <span id="id5">[<a class="reference internal" href="#id16" title="Suman Timilsina, Ho Geun Shin, Kee-Sun Sohn, and Ji Sik Kim. Dark-mode human-machine communication realized by persistent luminescence and deep learning. Advanced Intelligent Systems, JUL 2022. doi:10.1002/aisy.202200036.">Timilsina <em>et al.</em>, 2022</a>]</span>. Aquí, son señales importantes las señales electromiográficas, o también conocidas como señales EMG, que se originan por movimientos musculares <span id="id6">[<a class="reference internal" href="#id19" title="Olga S. Sushkova, Alexei A. Morozov, Ivan A. Kershner, Margarita N. Khokhlova, Alexandra V. Gabova, Alexei V. Karabanov, Larisa A. Chigaleichick, and Sergei N. Illarioshkin. Investigation of phase shifts using auc diagrams: application to differential diagnosis of parkinson's disease and essential tremor. Sensors, FEB 2023. doi:10.3390/s23031531.">Sushkova <em>et al.</em>, 2023</a>]</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Procesamiento de señales se enriquece con la relación de la teoría, aplicaciones y la puesta en operación de sistemas de procesamiento de señales. En los años 60 y anteriores, el procesamiento de señales se basaba en teconlogías analógicas, en términos de <code class="docutils literal notranslate"><span class="pre">tiempo</span> <span class="pre">continuo</span></code>. Este concepto, quiere decir que la variable independiente que es el <code class="docutils literal notranslate"><span class="pre">tiempo</span></code> varía de manera continua.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>La evolución de los computadores, microprocesadores y tarjetas gráficas causaron un desplazamiento hacia la tecnología digital, dando origen al <code class="docutils literal notranslate"><span class="pre">procesamiento</span> <span class="pre">digital</span> <span class="pre">señal</span></code>. En este caso, la variable independiente es el <code class="docutils literal notranslate"><span class="pre">tiempo</span></code> que varía de manera discreta.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Es importante tener presente en procesamiento digital de señales que éste se basa en procesar <code class="docutils literal notranslate"><span class="pre">secuencias</span> <span class="pre">de</span> <span class="pre">muestras</span></code>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Otro aspecto a tener en cuenta es que los problemas que se abordan en procesamiento de señales no están restringidos a señales de <code class="docutils literal notranslate"><span class="pre">una</span> <span class="pre">dimensión</span></code> como es el caso de audio. Muchas aplicaciones requieren de procesamiento de señales en más de una dimensión. Este es el caso de aplicaciones como video, imágenes médicas, sismología, entre otras.</p>
+</div></blockquote>
+</li>
+</ul>
+<!---
++ > A través de los cambios o variaciones de las señales, en cada uno de los ejemplos anteriores, descritos brevemente, las `señales` sirven para entender y explicar procesos de actividad, presencia, emoción, o movimiento, en un determinado período de tiempo. En algunos casos, se trata de señales muy complejas, con muy poca intensidad y vulnerables a la presencia ruido, por lo que extraer su información requiere de `procesamiento` etapa que puede jugar un rol clave.
+-->
+<!---
++ > Se pueden usar señales para múltiples propósitos. Podemos explorar un paisaje, por ejemplo, un paisaje sonoro y de la información acústica extraer  
+
+
+, para descubrir detalles en una estructura (fallas o grietas), para analizar tejidos humanos en operaciones mínimamente invasivas 
+
+# Markdown Files
+
+Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
+in regular markdown files (`.md`), you'll write in the same flavor of markdown
+called **MyST Markdown**.
+This is a simple file to help you get started and show off some syntax.
+
+## What is MyST?
+
+MyST stands for "Markedly Structured Text". It
+is a slight variation on a flavor of markdown called "CommonMark" markdown,
+with small syntax extensions to allow you to write **roles** and **directives**
+in the Sphinx ecosystem.
+
+For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
+
+## Sample Roles and Directives
+
+Roles and directives are two of the most powerful tools in Jupyter Book. They
+are kind of like functions, but written in a markup language. They both
+serve a similar purpose, but **roles are written in one line**, whereas
+**directives span many lines**. They both accept different kinds of inputs,
+and what they do with those inputs depends on the specific role or directive
+that is being called.
+
+Here is a "note" directive:
+
+```{note}
+Here is a note
+```
+
+It will be rendered in a special box when you build your book.
+
+## Sistemas y Señales en Tiempo Discreto
+-->
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id7">
+<dl class="citation">
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id4">LDI+22</a></span></dt>
+<dd><p>Meng Liu, Yaocong Duan, Robin A. A. Ince, Chaona Chen, Oliver G. B. Garrod, Philippe G. Schyns, and Rachael E. Jack. Facial expressions elicit multiplexed perceptions of emotion categories and dimensions. <em>Current Biology</em>, 32(1):200+, JAN 10 2022. <a class="reference external" href="https://doi.org/10.1016/j.cub.2021.10.035">doi:10.1016/j.cub.2021.10.035</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">MVE+22</span></dt>
+<dd><p>Gabriel Morales, Victor Vargas, Diego Espejo, Victor Poblete, Jorge A. Tomasevic, Felipe Otondo, and Juan G. Navedo. Method for passive acoustic monitoring of bird communities using umap and a deep neural network. <em>Ecological Informatics</em>, DEC 2022. <a class="reference external" href="https://doi.org/10.1016/j.ecoinf.2022.101909">doi:10.1016/j.ecoinf.2022.101909</a>.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id2">MAB+21</a></span></dt>
+<dd><p>C. A. Morrison, A. Aunins, Z. Benko, L. Brotons, T. Chodkiewicz, P. Chylarecki, V Escandell, D. P. Eskildsen, A. Gamero, S. Herrando, F. Jiguet, J. A. Kalas, J. Kamp, A. Klvanova, P. Kmecl, A. Lehikoinen, A. Lindstroem, C. Moshoj, D. G. Noble, I. J. Oien, J-Y Paquet, J. Reif, T. Sattler, B. S. Seaman, N. Teufelbauer, S. Trautmann, C. A. M. van Turnhout, P. Vorisek, and S. J. Butler. Bird population declines and species turnover are changing the acoustic properties of spring soundscapes. <em>Nature Communications</em>, NOV 2 2021. <a class="reference external" href="https://doi.org/10.1038/s41467-021-26488-1">doi:10.1038/s41467-021-26488-1</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">OSB99</span></dt>
+<dd><p>Alan V. Oppenheim, Ronald W. Schafer, and John R. Buck. <em>Discrete-Time Signal Processing</em>. Prentice-hall Englewood Cliffs, 1999.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id1">Par21</a></span></dt>
+<dd><p>Keshab K. Parhi. Teaching digital signal processing by partial flipping, active learning, and visualization: keeping students engaged with blended teaching. <em>IEEE Signal Processing Magazine</em>, 38(3):20–29, May 2021. <a class="reference external" href="https://doi.org/10.1109/MSP.2021.3052487">doi:10.1109/MSP.2021.3052487</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id3">SPMR+21</a></span></dt>
+<dd><p>Elsa Steinfath, Adrian Palacios-Muñoz, Julian R Rottschäfer, Deniz Yuezak, and Jan Clemens. Fast and accurate annotation of acoustic signals with deep neural networks. <em>eLife</em>, 10:e68837, nov 2021. URL: <a class="reference external" href="https://doi.org/10.7554/eLife.68837">https://doi.org/10.7554/eLife.68837</a>, <a class="reference external" href="https://doi.org/10.7554/eLife.68837">doi:10.7554/eLife.68837</a>.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id6">SMK+23</a></span></dt>
+<dd><p>Olga S. Sushkova, Alexei A. Morozov, Ivan A. Kershner, Margarita N. Khokhlova, Alexandra V. Gabova, Alexei V. Karabanov, Larisa A. Chigaleichick, and Sergei N. Illarioshkin. Investigation of phase shifts using auc diagrams: application to differential diagnosis of parkinson's disease and essential tremor. <em>Sensors</em>, FEB 2023. <a class="reference external" href="https://doi.org/10.3390/s23031531">doi:10.3390/s23031531</a>.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id5">TSSK22</a></span></dt>
+<dd><p>Suman Timilsina, Ho Geun Shin, Kee-Sun Sohn, and Ji Sik Kim. Dark-mode human-machine communication realized by persistent luminescence and deep learning. <em>Advanced Intelligent Systems</em>, JUL 2022. <a class="reference external" href="https://doi.org/10.1002/aisy.202200036">doi:10.1002/aisy.202200036</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="aprender-mas">
+<h2>Aprender más:<a class="headerlink" href="#aprender-mas" title="Permalink to this heading">#</a></h2>
+<div class="admonition seealso">
+<p class="admonition-title">Ver también</p>
+<p>Para conocer más actividades sobre sistemas y señales, ver <a class="reference external" href="https://signalprocessingsociety.org/our-story/signal-processing-101">IEEE Signal Processing Society</a>.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Ver también</p>
+<p>Se puede aprender más en <a class="reference external" href="https://asa.scitation.org/topic/aipthesaurus/p107p77?SeriesKey=jas">The Journal of the Acoustical Society of America</a>.</p>
+</div>
+<!---
+```{note}
+Se puede aprender más en [Acoustic signal processing:]
+(https://asa.scitation.org/topic/aipthesaurus/p107p77?SeriesKey=jas!).
+```
+
+This is just a simple starter to get you started.
+You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
+-->
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Instituto de Acústica: ACUS 099</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="clase2.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Señales y Sistemas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aprender-mas">Aprender más:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Víctor Poblete Ramírez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

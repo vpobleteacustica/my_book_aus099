@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Señales y Sistemas &#8212; ACUS099 Procesamiento Digital de Señales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'clase2';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Introducción" href="clase1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Instituto de Acústica: ACUS 099
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="clase1.html">Introducción</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Señales y Sistemas</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/clase2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Señales y Sistemas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Señales y Sistemas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-representa-una-senal">Cómo se representa una señal?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencias-fundamentales">Secuencias fundamentales</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas">Sistemas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-sistemas">Propiedades de los sistemas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lineales-e-invariantes-en-el-tiempo">Sistemas Lineales e Invariantes en el Tiempo</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="senales-y-sistemas">
+<h1>Señales y Sistemas<a class="headerlink" href="#senales-y-sistemas" title="Permalink to this heading">#</a></h1>
+<ul>
+<li><blockquote>
+<div><p>Una <code class="docutils literal notranslate"><span class="pre">señal</span></code> se puede pensar como si fuera una función matemática que lleva o que contiene información acerca del estado o comportamiento de de un cierto <code class="docutils literal notranslate"><span class="pre">sistema</span></code> físico <span id="id1">[<a class="reference internal" href="clase1.html#id13" title="Alan V. Oppenheim, Ronald W. Schafer, and John R. Buck. Discrete-Time Signal Processing. Prentice-hall Englewood Cliffs, 1999.">Oppenheim <em>et al.</em>, 1999</a>]</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Aunque existen muchas maneras diferentes de <code class="docutils literal notranslate"><span class="pre">visualizar</span></code> una señal y la información que lleva, lo significativo es que dicha información, está contenida en ciertos tipos de <code class="docutils literal notranslate"><span class="pre">patrones</span></code> que pueden varíar <span id="id2">[<a class="reference internal" href="clase1.html#id14" title="Gabriel Morales, Victor Vargas, Diego Espejo, Victor Poblete, Jorge A. Tomasevic, Felipe Otondo, and Juan G. Navedo. Method for passive acoustic monitoring of bird communities using umap and a deep neural network. Ecological Informatics, DEC 2022. doi:10.1016/j.ecoinf.2022.101909.">Morales <em>et al.</em>, 2022</a>]</span>.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><img alt="Figura Señal2" src="_images/Gabriel.png" /></p>
+<section id="como-se-representa-una-senal">
+<h2>Cómo se representa una señal?<a class="headerlink" href="#como-se-representa-una-senal" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><blockquote>
+<div><p>Las <code class="docutils literal notranslate"><span class="pre">señales</span></code> se representan matemáticamente como funciones de una o más variables independientes.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>En el caso de un sonido, la señal se representa como una función de una <code class="docutils literal notranslate"><span class="pre">sola</span> <span class="pre">variable</span></code>, que es el <code class="docutils literal notranslate"><span class="pre">tiempo</span></code>. Mientras que, en una imagen digital, estas se representan como una <code class="docutils literal notranslate"><span class="pre">función</span> <span class="pre">de</span> <span class="pre">dos</span> <span class="pre">variables</span></code>, <span class="math notranslate nohighlight">\(x(m,n)\)</span>, como se observa en la siguiente figura, donde <span class="math notranslate nohighlight">\((m,n)\)</span> representan las coordenadas espaciales y <span class="math notranslate nohighlight">\(x\)</span> representa la intensidad (brillo) en ese pixel.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><img alt="Figura Image" src="_images/image.png" /></p>
+<ul>
+<li><blockquote>
+<div><p>Es común, en el caso de sonido,  referirse a la variable independiente de la representación matemática de una señal como el <code class="docutils literal notranslate"><span class="pre">tiempo</span></code>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>En la representación matemática de una señal acústica, la variable independiente, puede ser <code class="docutils literal notranslate"><span class="pre">continua</span></code> o <code class="docutils literal notranslate"><span class="pre">discreta</span></code>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Las señales de tiempo continuo se refieren como <code class="docutils literal notranslate"><span class="pre">señales</span> <span class="pre">análogas</span></code>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Las señales de tiempo discreto se definen en <code class="docutils literal notranslate"><span class="pre">tiempos</span> <span class="pre">discretos</span></code> y en consecuencia la variable independiente toma valores discretos.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Las <code class="docutils literal notranslate"><span class="pre">señales</span> <span class="pre">en</span> <span class="pre">tiempo</span> <span class="pre">discreto</span></code> se representan como secuencias de números.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Una secuencia es simplemente una función cuyo dominio es el conjunto de los números enteros <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Formalmente, una secuencia de números <span class="math notranslate nohighlight">\(x\)</span>, en la que el <code class="docutils literal notranslate"><span class="pre">$n$-ésimo</span></code> número en la secuencia se denota como <span class="math notranslate nohighlight">\(x\,[\,n\,]\)</span>, donde <span class="math notranslate nohighlight">\(n\)</span> es un entero, se escribe como:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+x&amp;=\{x\,[\,n\,]\},\quad \quad -\infty &lt; n &lt; \infty 
+\label{eq1}\tag{1}
+\end{align*}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En la secuencia (o función), se usó <span class="math notranslate nohighlight">\([\,]\)</span> para encerrar a la variable independiente.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En funciones de tiempo continuo, se usa <span class="math notranslate nohighlight">\((\,)\)</span> para encerrar a la variable independiente continua.</p>
+</div>
+<ul>
+<li><blockquote>
+<div><p>A partir de un muestreo (<code class="docutils literal notranslate"><span class="pre">sampling</span></code>) de una señal continua <span class="math notranslate nohighlight">\(x_{c}(t)\)</span>, el valor numérico del <span class="math notranslate nohighlight">\(n\)</span>-ésimo número en la secuencia, es igual al valor de la señal continua <span class="math notranslate nohighlight">\(x_{c}(t)\)</span> en el tiempo <span class="math notranslate nohighlight">\(nT_{s}\)</span>. Es decir,</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+x\,[\,n\,]&amp;=x_{c}\,(\,n\,T_{s}\,),\quad \quad -\infty &lt; n &lt; \infty 
+\label{eq2}\tag{2}
+\end{align*}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Representación gráfica de una señal en tiempo discreto</p>
+</div>
+<p><img alt="Figura sampling" src="_images/sampling.png" /></p>
+</section>
+<section id="secuencias-fundamentales">
+<h2>Secuencias fundamentales<a class="headerlink" href="#secuencias-fundamentales" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">impulso</span> <span class="pre">unitario</span></code>: Esta señal se denota como <span class="math notranslate nohighlight">\(\delta[n]\)</span> y se define como:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{centrada en cero:}\quad \delta[n] &amp;= \begin{cases}
+1, &amp; \text{para } n = 0 \\
+0, &amp; \text{otro caso}
+\label{eq3}\tag{3}
+\end{cases}
+\end{align*}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+{\it{Shifteada}:}\quad  \delta[n-k] &amp;= \begin{cases}
+1, &amp; n = k \\
+0, &amp; n \neq k
+\end{cases}
+\label{eq4}\tag{4}
+\end{align*}
+\end{split}\]</div>
+<ul>
+<li><blockquote>
+<div><p>Una propiedad muy importante de la secuencia <span class="math notranslate nohighlight">\(\delta[n]\)</span>, es que cualquier señal se podría  representar como una suma escalada de impulsos desplazados (<em>shifteados</em>):</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+x\,[\,n\,] \, &amp;=\, \sum_{k=-\infty}^{\infty}\, x\,[\,k\,]\cdot \delta[\,n\,-\,k\,]
+\label{eq5}\tag{5}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Secuencia</span> <span class="pre">escalón</span> <span class="pre">unitario</span></code>:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u[n] &amp;= \begin{cases}
+1, &amp; \text{para } n \ge 0 \\
+0, &amp; n &lt; 0
+\label{eq6}\tag{6}
+\end{cases}
+\end{align*}
+\end{split}\]</div>
+<ul>
+<li><blockquote>
+<div><p>La secuencia <span class="math notranslate nohighlight">\(u[n]\)</span> está relacionada a la secuencia impulso <span class="math notranslate nohighlight">\(\delta[n]\)</span>:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+u\,[\,n\,] \, &amp;=\, \delta\,[\,n\,] + \delta\,[\,n-1\,]+ \delta\,[\,n-2\,]+\ldots 
+\label{eq7a}\tag{7a}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p>O bien,</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+u\,[\,n\,]\, &amp;=\, \sum_{k=0}^{\infty} \delta\,[\,n-k\,]
+\label{eq7b}\tag{7b}
+\end{align*}
+\]</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>Además, la secuencia impulso unitario, se puede expresar como:</p></li>
+</ul>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\delta\,[\,n\,] \, &amp;=\, u\,[\,n\,] - u\,[\,n-1\,]
+\label{eq8}\tag{8}
+\end{align*}
+\]</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sistemas">
+<h1>Sistemas<a class="headerlink" href="#sistemas" title="Permalink to this heading">#</a></h1>
+<ul>
+<li><blockquote>
+<div><p>Un <code class="docutils literal notranslate"><span class="pre">sistema</span></code> es un proceso que transforma una señal en otra señal.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Al igual que en el caso de las señales, los <code class="docutils literal notranslate"><span class="pre">sistemas</span> <span class="pre">de</span> <span class="pre">tiempo</span> <span class="pre">continuo</span></code> son aquellos sistemas para los que la entrada y la salida son señales de tiempo continuo.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Y los <code class="docutils literal notranslate"><span class="pre">sistemas</span> <span class="pre">de</span> <span class="pre">tiempo</span> <span class="pre">discreto</span></code> son aquellos sistemas para los que la entrada y la salida son señales de tiempo discreto.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Se representa un sistema de manera gráfica en la forma de relaciones de <code class="docutils literal notranslate"><span class="pre">Entrada</span></code> y <code class="docutils literal notranslate"><span class="pre">Respuesta</span></code>.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><img alt="Figura Sistema" src="_images/sistema.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Por conveniencia, la señal de entrada se suele etiquetar como <span class="math notranslate nohighlight">\(x\,[\,n\,]\)</span> mientras que la señal de salida, se etiqueta como <span class="math notranslate nohighlight">\(y\,[\,n\,]\)</span>.</p>
+</div>
+<section id="propiedades-de-los-sistemas">
+<h2>Propiedades de los sistemas<a class="headerlink" href="#propiedades-de-los-sistemas" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Aditividad:</span></code> Esto significa que cuando al sistema se le da la suma de diferentes señales de entrada, el resultado es la suma de las salidas de cada entrada por separado:</p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/add.png"><img alt="“”" src="_images/add.png" style="width: 1200px; height: 200px;" /></a>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Escalamiento:</span></code> Quiere decir que cuando uno multiplica por un escalar <span class="math notranslate nohighlight">\(c\)</span> una señal de entrada a un sistema, la salida también se multiplica por el mismo escalar:</p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/scaling.png"><img alt="“”" src="_images/scaling.png" style="width: 400px; height: 100px;" /></a>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Sistema</span> <span class="pre">Lineal</span> <span class="pre">y</span> <span class="pre">Principio</span> <span class="pre">de</span> <span class="pre">Superposición:</span></code> Se refiere a que si las respuestas de un sistema son <span class="math notranslate nohighlight">\(y_1[n]\)</span> e <span class="math notranslate nohighlight">\(y_2[n]\)</span>, cuando <span class="math notranslate nohighlight">\(x_1[n]\)</span> y <span class="math notranslate nohighlight">\(x_2[n]\)</span> son las entradas respectivas, entonces el sistema es <code class="docutils literal notranslate"><span class="pre">lineal</span></code> si y sólo si se cumplen las propiedades de aditividad y escalamiento, tal como se observa en las Ecs. (9) y (10):</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+T\{x_1\,[\,n\,] + x_2\,[\,n\,]\} \, &amp;=\, T\{x_1\,[\,n\,]\} \, + \, T\{x_2\,[\,n\,]\}
+\label{eq9}\tag{9}
+\end{align*}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+T\{c\,\cdot x\,[\,n\,]\} \, &amp;=\, c\,\cdot T\{x\,[\,n\,]\}
+\label{eq10}\tag{10}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p>Estas dos propiedades se pueden combinar en el <code class="docutils literal notranslate"><span class="pre">Principio</span> <span class="pre">de</span> <span class="pre">Superposición:</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+T\{c_1\,\cdot x_1\,[\,n\,] + c_2\,\cdot x_2\,[\,n\,]\} \, &amp;=\, c_1\,\cdot T\{x_1\,[\,n\,]\} + c_2\,\cdot T\{x_2\,[\,n\,]\}
+\label{eq11}\tag{11}
+\end{align*}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(c_1\)</span> y <span class="math notranslate nohighlight">\(c_2\)</span> son escalares arbitrarios.</p>
+<ul>
+<li><blockquote>
+<div><p>Este Principio de Superposición se puede generalizar a muchas entradas. Específicamente, si</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+x\,[\,n\,]\, &amp;=\, \sum_{k}^{} c_k \, x_k\,[\,n\,]
+\label{eq12}\tag{12}
+\end{align*}
+\]</div>
+<p>entonces:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+y\,[\,n\,]\, &amp;=\, \sum_{k}^{} c_k \, y_k\,[\,n\,]
+\label{eq13}\tag{13}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Invariancia</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo:</span></code> Esta propiedad se refiere a que un sistema es <code class="docutils literal notranslate"><span class="pre">invariante</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo</span></code> si cumple con que un cambio de tiempo arbitrario en la señal de entrada dada, va a producir el mismo cambio de tiempo en la salida. Si <span class="math notranslate nohighlight">\(y\,[\,n\,] \,=\, T\{x\,[\,n\,]\}\)</span>, entonces <span class="math notranslate nohighlight">\(y\,[\,n\,-\,n_0\,] \,=\, T\{x\,[\,n\,-\,n_0\,]\}\)</span>, donde <span class="math notranslate nohighlight">\(n_0\)</span> es un corrimiento arbitrario de tiempo.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="sistemas-lineales-e-invariantes-en-el-tiempo">
+<h2>Sistemas Lineales e Invariantes en el Tiempo<a class="headerlink" href="#sistemas-lineales-e-invariantes-en-el-tiempo" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><blockquote>
+<div><p>Representan una clase de sistemas muy importantes en procesamiento de señales. Se dice que un sistema que posee las dos propiedades: <code class="docutils literal notranslate"><span class="pre">linealidad</span></code> e <code class="docutils literal notranslate"><span class="pre">invariancia</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo</span></code>, es un sistema lineal e invariante en el tiempo. También se les identifica como o <code class="docutils literal notranslate"><span class="pre">sistemas</span> <span class="pre">LTI</span></code>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>Los <code class="docutils literal notranslate"><span class="pre">sistemas</span> <span class="pre">LTI</span></code> siempre se consideran con respecto a la <code class="docutils literal notranslate"><span class="pre">respuesta</span> <span class="pre">de</span> <span class="pre">impulso</span> <span class="pre">unitario</span></code>. Esto quiere decir que cuando la entrada es la señal de impulso unitario, entonces la salida es la respuesta de impulso.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><img alt="Figura Sistema" src="_images/h.png" /></p>
+<ul>
+<li><blockquote>
+<div><p>En la figura, la entrada al sistema es una señal de impulso, <span class="math notranslate nohighlight">\(x\,[\,n\,] = \delta\,[\,n\,]\)</span>, y la salida es la respuesta del sistema al impulso:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+y\,[\,n\,]\, &amp;=\, h\,[\,n\,]= T\{\delta\,[\,n\,]\}
+\label{eq14}\tag{14}
+\end{align*}
+\]</div>
+<!---
+## Learn more
+
+This is just a simple starter to get you started.
+You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
+-->
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="clase1.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Introducción</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Señales y Sistemas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-representa-una-senal">Cómo se representa una señal?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secuencias-fundamentales">Secuencias fundamentales</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas">Sistemas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-sistemas">Propiedades de los sistemas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lineales-e-invariantes-en-el-tiempo">Sistemas Lineales e Invariantes en el Tiempo</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Víctor Poblete Ramírez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
