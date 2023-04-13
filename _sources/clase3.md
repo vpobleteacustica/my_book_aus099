@@ -141,7 +141,7 @@ h[n] &= u[n]-u[n-N] \\
 $$
 > donde $u[n]$ es un escalón unitario centrado en cero.
 > + La entrada al sistema es $x[n]=a^{n}\cdot u[n]$. Para obtener algo similar a la figura del Libro mostrada más abajo, suponer que un valor para $a$ tal que $0<a<1$
-> + Se pide encontrar la respuesta en un índice $n$ particular.
+> + Se pide encontrar la salida del sistema en un índice $n$ particular.
 > + Sugerencias: 
 >> + Formar las sumas sobre todos los $k$ de los productos $x[k] \cdot h[n-k]$. Plotear: $x[n]$ y $h[n-k]$ para: 1) un $n$ entero negativo; 2) $0\leq n$ y $n-(N+1)\leq 0$, y 3) $0<n-N+1$, ó, $N-1<n$
 > + Usar la formula general:
