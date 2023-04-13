@@ -113,7 +113,7 @@ y[\,n\,]&=\,x\,[\,n\,]\,*\,h\,[\,n\,]
 \end{align*}
 $$
 
-+ > `Ejercicio:` Suponer que $h[\,k\,]$ es la señal mostrada en la siguiente figura $(\,a\,)$:
++ > `Ejercicio 1:` Suponer que $h[\,k\,]$ es la señal mostrada en la siguiente figura $(\,a\,)$:
 
 ![Figura Señal2](ejer.png)
 
@@ -125,6 +125,39 @@ $h[\,-k\,]$ es simplemente $h[\,k\,]$ flipeada en torno a $k\,=\,0$ como se pued
 ```
 
 + >> Reemplazar ahora $k$ por $k\,-\,n$, donde $n$ es un entero fijo, que nos llevará a un shifteo del origen de la señal $h[\,-k\,]$ a $k\,=\,n$. Probar el caso para $n\,=\,4$ y plotear como se muestra en $(\,c\,)$. 
+
++ > `Ejercicio 2:` Evaluar analíticamente la siguiente suma de convolución.
++ >> Consideremos un sistema LTI con respuesta impulso:
+
+$$
+\begin{align*}
+h[n] &= u[n]-u[n-N] \\
+& =\begin{cases}
+1 & \text{para } 0\leq n \leq N-1 \\
+0 & \text{otro caso}
+\end{cases} 
+\label{eq25}\tag{25}
+\end{align*}
+$$
+> donde $u[n]$ es un escalón unitario centrado en cero.
+> + La entrada al sistema es $x[n]=a^{n}\cdot u[n]$. Para obtener algo similar a la figura del Libro mostrada más abajo, suponer que un valor para $a$ tal que $0<a<1$
+> + Se pide encontrar la respuesta en un índice $n$ particular.
+> + Sugerencias: 
+>> + Formar las sumas sobre todos los $k$ de los productos $x[k] \cdot h[n-k]$. Plotear: $x[n]$ y $h[n-k]$ para: 1) un $n$ entero negativo; 2) $0\leq n$ y $n-(N+1)\leq 0$, y 3) $0<n-N+1$, ó, $N-1<n$
+> + Usar la formula general:
+
+$$
+\begin{align*}
+\sum_{k=N_{1}}^{N_{2}}\alpha^{k} &= \frac{\alpha^{N_{1}}- \alpha^{N_{2}+1}}{1-\alpha},\quad N_{2}\geq N_{1}
+\label{eq26}\tag{26}
+\end{align*}
+$$
+
++ >> Del libro. Oppenheim, A. and Schafer, R. (2009). Discrete-Time Signal Processing. Prentice Hall Press. USA. Third Edition: página 27, https://d1.amobbs.com/bbs_upload782111/files_24/ourdev_523225.pdf
+
+![Figura Señal2](LibroOppenheimSchafer.png)
+
+
 
 <!---
 + > Una `señal` se puede pensar como si fuera una función matemática que lleva o que contiene información acerca del estado o comportamiento de de un cierto `sistema` físico {cite}`oppenheim99`.

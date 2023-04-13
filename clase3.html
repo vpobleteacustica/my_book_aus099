@@ -466,7 +466,7 @@ y[\,n\,]&amp;=\,x\,[\,n\,]\,*\,h\,[\,n\,]
 \]</div>
 <ul>
 <li><blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">Ejercicio:</span></code> Suponer que <span class="math notranslate nohighlight">\(h[\,k\,]\)</span> es la señal mostrada en la siguiente figura <span class="math notranslate nohighlight">\((\,a\,)\)</span>:</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">Ejercicio</span> <span class="pre">1:</span></code> Suponer que <span class="math notranslate nohighlight">\(h[\,k\,]\)</span> es la señal mostrada en la siguiente figura <span class="math notranslate nohighlight">\((\,a\,)\)</span>:</p>
 </div></blockquote>
 </li>
 </ul>
@@ -496,7 +496,60 @@ y[\,n\,]&amp;=\,x\,[\,n\,]\,*\,h\,[\,n\,]
 </div></blockquote>
 </div></blockquote>
 </li>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Ejercicio</span> <span class="pre">2:</span></code> Evaluar analíticamente la siguiente suma de convolución.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><blockquote>
+<div><p>Consideremos un sistema LTI con respuesta impulso:</p>
+</div></blockquote>
+</div></blockquote>
+</li>
 </ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+h[n] &amp;= u[n]-u[n-N] \\
+&amp; =\begin{cases}
+1 &amp; \text{para } 0\leq n \leq N-1 \\
+0 &amp; \text{otro caso}
+\end{cases} 
+\label{eq25}\tag{25}
+\end{align*}
+\end{split}\]</div>
+<blockquote>
+<div><p>donde <span class="math notranslate nohighlight">\(u[n]\)</span> es un escalón unitario centrado en cero.</p>
+<ul class="simple">
+<li><p>La entrada al sistema es <span class="math notranslate nohighlight">\(x[n]=a^{n}\cdot u[n]\)</span>. Para obtener algo similar a la figura del Libro mostrada más abajo, suponer que un valor para <span class="math notranslate nohighlight">\(a\)</span> tal que <span class="math notranslate nohighlight">\(0&lt;a&lt;1\)</span></p></li>
+<li><p>Se pide encontrar la respuesta en un índice <span class="math notranslate nohighlight">\(n\)</span> particular.</p></li>
+<li><p>Sugerencias:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Formar las sumas sobre todos los <span class="math notranslate nohighlight">\(k\)</span> de los productos <span class="math notranslate nohighlight">\(x[k] \cdot h[n-k]\)</span>. Plotear: <span class="math notranslate nohighlight">\(x[n]\)</span> y <span class="math notranslate nohighlight">\(h[n-k]\)</span> para: 1) un <span class="math notranslate nohighlight">\(n\)</span> entero negativo; 2) <span class="math notranslate nohighlight">\(0\leq n\)</span> y <span class="math notranslate nohighlight">\(n-(N+1)\leq 0\)</span>, y 3) <span class="math notranslate nohighlight">\(0&lt;n-N+1\)</span>, ó, <span class="math notranslate nohighlight">\(N-1&lt;n\)</span></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Usar la formula general:</p></li>
+</ul>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\sum_{k=N_{1}}^{N_{2}}\alpha^{k} &amp;= \frac{\alpha^{N_{1}}- \alpha^{N_{2}+1}}{1-\alpha},\quad N_{2}\geq N_{1}
+\label{eq26}\tag{26}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><blockquote>
+<div><p>Del libro. Oppenheim, A. and Schafer, R. (2009). Discrete-Time Signal Processing. Prentice Hall Press. USA. Third Edition: página 27, <a class="reference external" href="https://d1.amobbs.com/bbs_upload782111/files_24/ourdev_523225.pdf">https://d1.amobbs.com/bbs_upload782111/files_24/ourdev_523225.pdf</a></p>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+<p><img alt="Figura Señal2" src="_images/LibroOppenheimSchafer.png" /></p>
 <!---
 + > Una `señal` se puede pensar como si fuera una función matemática que lleva o que contiene información acerca del estado o comportamiento de de un cierto `sistema` físico {cite}`oppenheim99`.
 
