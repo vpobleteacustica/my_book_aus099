@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Representación de convolución de sistemas discretos &#8212; ACUS099 Procesamiento Digital de Señales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'clase3';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Señales y Sistemas" href="clase2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Instituto de Acústica: ACUS 099
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="clase1.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clase2.html">Señales y Sistemas</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Representación de convolución de sistemas discretos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/clase3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Representación de convolución de sistemas discretos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="representacion-de-convolucion-de-sistemas-discretos">
+<h1>Representación de convolución de sistemas discretos<a class="headerlink" href="#representacion-de-convolucion-de-sistemas-discretos" title="Permalink to this heading">#</a></h1>
+<p><img alt="Figura Señal2" src="_images/delta.png" /></p>
+<ul>
+<li><blockquote>
+<div><p>Vamos a considerar un <code class="docutils literal notranslate"><span class="pre">sistema</span> <span class="pre">LTI</span> <span class="pre">en</span> <span class="pre">tiempo</span> <span class="pre">discreto</span></code>:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+y[\,n\,]&amp;=T\Bigl\{x[\,n\,] \Bigl\} 
+\label{eq15}\tag{15}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p>Si usamos como entrada al sistema la señal <code class="docutils literal notranslate"><span class="pre">impulso</span> <span class="pre">unitario</span></code> centrada en cero:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\delta[\,n\,] &amp;= \begin{cases}
+1, &amp; \text{para } n = 0 \\
+0, &amp; \text{para } n \ne 0
+\label{eq16}\tag{16}
+\end{cases}
+\end{align*}
+\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Entonces, vamos a definir la <code class="docutils literal notranslate"><span class="pre">Respuesta</span> <span class="pre">al</span> <span class="pre">Impulso</span> <span class="pre">Unitario</span></code> del sistema como su salida correspondiente:</p>
+</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+h[\,n\,]&amp;=T\Bigl\{\delta[\,n\,] \Bigl\} 
+\label{eq17}\tag{17}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p>Ahora demostraremos que la salida del sistema <code class="docutils literal notranslate"><span class="pre">LTI</span></code> debido a una señal de entrada arbitraria <span class="math notranslate nohighlight">\(x[\,n\,],\)</span> la podmeos expresar en términos de <span class="math notranslate nohighlight">\(x[\,n\,]\)</span> y <span class="math notranslate nohighlight">\(h[\,n\,]\)</span>.</p>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><p>En efecto, supongamos que en la entrada del sistema hay una señal <span class="math notranslate nohighlight">\(x[\,n\,]\)</span> (puede ser cualquiera), la que podemos escribir como (recordar <code class="docutils literal notranslate"><span class="pre">sifting</span></code>):</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+x\,[\,n\,] \, &amp;=\, \sum_{k=-\infty}^{\infty}\, x\,[\,k\,]\cdot \delta[\,n\,-\,k\,]
+\label{eq18}\tag{18}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p>Entonces, opera el <code class="docutils literal notranslate"><span class="pre">sistema</span> <span class="pre">LTI</span> <span class="pre">en</span> <span class="pre">tiempo</span> <span class="pre">discreto</span></code>:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+y[\,n\,]&amp;=T\Bigl\{x[\,n\,] \Bigl\}\\
+        &amp;=T\Biggl\{\sum_{k=-\infty}^{\infty}\, x\,[\,k\,]\cdot \delta[\,n\,-\,k\,] \Biggl\}
+\label{eq19}\tag{19}
+\end{align*}
+\end{split}\]</div>
+<ul>
+<li><blockquote>
+<div><p>Usando el hecho que el sistema cumple con la propiedad de <code class="docutils literal notranslate"><span class="pre">aditividad</span></code>, entonces podemos sacar la sumatoria y re-escribir:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+y[\,n\,]&amp;=\,T\Bigl\{x[\,n\,] \Bigl\}\\
+        &amp;=\,\sum_{k=-\infty}^{\infty}\,T\Bigl\{x\,[\,k\,]\cdot \delta[\,n\,-\,k\,] \Bigl\}
+\label{eq20}\tag{20}
+\end{align*}
+\end{split}\]</div>
+<ul>
+<li><blockquote>
+<div><p>A continuación, usamos también el hecho que el sistema cumple con la propiedad de <code class="docutils literal notranslate"><span class="pre">escalamiento</span></code>, entonces quiere decir que podemos sacar las amplitudes del operador <span class="math notranslate nohighlight">\(T\)</span> (ya que son escalares) y re-escribir:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+y[\,n\,]&amp;=\,T\Bigl\{x[\,n\,] \Bigl\}\\
+        &amp;=\,\sum_{k=-\infty}^{\infty}\,x\,[\,k\,]\,\cdot T\Bigl\{\delta[\,n\,-\,k\,] \Bigl\}
+\label{eq21}\tag{21}
+\end{align}
+\end{split}\]</div>
+<ul>
+<li><blockquote>
+<div><p>Y dado que el sistema también cumple con la propiedad de <code class="docutils literal notranslate"><span class="pre">invariancia</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">tiempo</span></code>, entonces para cada <span class="math notranslate nohighlight">\(k\)</span> podemos escribir:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+T\Bigl\{\delta[\,n\,-\,k\,]\Bigl\}\,&amp;=\,h[\,n\,-\,k\,]
+\label{eq22}\tag{22}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p>Por lo tanto, hemos demostrado que:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+y[\,n\,]&amp;=\,\sum_{k=-\infty}^{\infty}\,x\,[\,k\,]\,\cdot \,h\,[\,n\,-\,k\,] 
+\label{eq23}\tag{23}
+\end{align*}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>donde <span class="math notranslate nohighlight">\(h\,[\,n\,]\)</span> es la <code class="docutils literal notranslate"><span class="pre">Respuesta</span> <span class="pre">al</span> <span class="pre">Impulso</span> <span class="pre">Unitario</span></code> del sistema.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Este resultado es muy importante en procesamiento de señales. Se conoce como la representación de la convolución de un sistema LTI en tiempo discreto.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un sistema LTI se caracteriza por completo por su respuesta al impulso <span class="math notranslate nohighlight">\(h\,[\,n\,]\)</span>. Es decir, si conocemos <span class="math notranslate nohighlight">\(h\,[\,n\,]\)</span>, entonces la podremos usar para calcular la salida <span class="math notranslate nohighlight">\(y\,[\,n\,]\)</span> del sistema debido a cualquier entrada <span class="math notranslate nohighlight">\(x\,[\,n\,]\)</span>.</p>
+</div>
+<ul>
+<li><blockquote>
+<div><p>En general, podemos decir que <span class="math notranslate nohighlight">\(y\,[\,n\,]\)</span> representa la convolución entre dos señales <span class="math notranslate nohighlight">\(x\,[\,n\,]\)</span> y <span class="math notranslate nohighlight">\(h\,[\,n\,]\)</span> y denotarla como:</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+y[\,n\,]&amp;=\,x\,[\,n\,]\,*\,h\,[\,n\,] 
+\label{eq24}\tag{24}
+\end{align*}
+\]</div>
+<ul>
+<li><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Ejercicio:</span></code> Suponer que <span class="math notranslate nohighlight">\(h[\,k\,]\)</span> es la señal mostrada en la siguiente figura <span class="math notranslate nohighlight">\((\,a\,)\)</span>:</p>
+</div></blockquote>
+</li>
+</ul>
+<p><img alt="Figura Señal2" src="_images/ejer.png" /></p>
+<ul>
+<li><blockquote>
+<div><blockquote>
+<div><p>Primero, se pide plotear <span class="math notranslate nohighlight">\(h[\,k\,]\)</span> como una función de la variable independiente <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><blockquote>
+<div><blockquote>
+<div><p>En seguida, plotear <span class="math notranslate nohighlight">\(h[\,-k\,]\)</span> en función también de <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><span class="math notranslate nohighlight">\(h[\,-k\,]\)</span> es simplemente <span class="math notranslate nohighlight">\(h[\,k\,]\)</span> flipeada en torno a <span class="math notranslate nohighlight">\(k\,=\,0\)</span> como se puede ver en <span class="math notranslate nohighlight">\((\,b\,)\)</span>.</p>
+</div>
+<ul>
+<li><blockquote>
+<div><blockquote>
+<div><p>Reemplazar ahora <span class="math notranslate nohighlight">\(k\)</span> por <span class="math notranslate nohighlight">\(k\,-\,n\)</span>, donde <span class="math notranslate nohighlight">\(n\)</span> es un entero fijo, que nos llevará a un shifteo del origen de la señal <span class="math notranslate nohighlight">\(h[\,-k\,]\)</span> a <span class="math notranslate nohighlight">\(k\,=\,n\)</span>. Probar el caso para <span class="math notranslate nohighlight">\(n\,=\,4\)</span> y plotear como se muestra en <span class="math notranslate nohighlight">\((\,c\,)\)</span>.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+<!---
++ > Una `señal` se puede pensar como si fuera una función matemática que lleva o que contiene información acerca del estado o comportamiento de de un cierto `sistema` físico {cite}`oppenheim99`.
+
++ > Aunque existen muchas maneras diferentes de `visualizar` una señal y la información que lleva, lo significativo es que dicha información, está contenida en ciertos tipos de `patrones` que pueden varíar {cite}`Morales`.
+
+![Figura Señal2](Gabriel.png)
+
+## Cómo se representa una señal?
+
++ > Las `señales` se representan matemáticamente como funciones de una o más variables independientes.
+
++ > En el caso de un sonido, la señal se representa como una función de una `sola variable`, que es el `tiempo`. Mientras que, en una imagen digital, estas se representan como una `función de dos variables`, $x(m,n)$, como se observa en la siguiente figura, donde $(m,n)$ representan las coordenadas espaciales y $x$ representa la intensidad (brillo) en ese pixel. 
+
+![Figura Image](image.png)
+
++ > Es común, en el caso de sonido,  referirse a la variable independiente de la representación matemática de una señal como el `tiempo`. 
+
++ > En la representación matemática de una señal acústica, la variable independiente, puede ser `continua` o `discreta`.
+
++ > Las señales de tiempo continuo se refieren como `señales análogas`.
+
++ > Las señales de tiempo discreto se definen en `tiempos discretos` y en consecuencia la variable independiente toma valores discretos.
+
++ > Las `señales en tiempo discreto` se representan como secuencias de números.
+
++ > Una secuencia es simplemente una función cuyo dominio es el conjunto de los números enteros $\mathbb{Z}$.
+
++ > Formalmente, una secuencia de números $x$, en la que el `$n$-ésimo` número en la secuencia se denota como $x\,[\,n\,]$, donde $n$ es un entero, se escribe como:
+
+$$
+\begin{align*}
+x&=\{x\,[\,n\,]\},\quad \quad -\infty < n < \infty 
+\label{eq1}\tag{1}
+\end{align*}
+$$
+
+```{note}
+En la secuencia (o función), se usó $[\,]$ para encerrar a la variable independiente.
+```
+
+```{note}
+En funciones de tiempo continuo, se usa $(\,)$ para encerrar a la variable independiente continua.
+```
++ > A partir de un muestreo (`sampling`) de una señal continua $x_{c}(t)$, el valor numérico del $n$-ésimo número en la secuencia, es igual al valor de la señal continua $x_{c}(t)$ en el tiempo $nT_{s}$. Es decir,
+
+$$
+\begin{align*}
+x\,[\,n\,]&=x_{c}\,(\,n\,T_{s}\,),\quad \quad -\infty < n < \infty 
+\label{eq2}\tag{2}
+\end{align*}
+$$
+
+
+```{note}
+Representación gráfica de una señal en tiempo discreto
+```
+
+![Figura sampling](sampling.png)
+
+## Secuencias fundamentales
+
++ > `Secuencia impulso unitario`: Esta señal se denota como $\delta[n]$ y se define como:
+
+$$
+\begin{align*}
+\text{centrada en cero:}\quad \delta[n] &= \begin{cases}
+1, & \text{para } n = 0 \\
+0, & \text{otro caso}
+\label{eq3}\tag{3}
+\end{cases}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+{\it{Shifteada}:}\quad  \delta[n-k] &= \begin{cases}
+1, & n = k \\
+0, & n \neq k
+\end{cases}
+\label{eq4}\tag{4}
+\end{align*}
+$$
+
++ > Una propiedad muy importante de la secuencia $\delta[n]$, es que cualquier señal se podría  representar como una suma escalada de impulsos desplazados (*shifteados*):
+
+$$
+\begin{align*}
+x\,[\,n\,] \, &=\, \sum_{k=-\infty}^{\infty}\, x\,[\,k\,]\cdot \delta[\,n\,-\,k\,]
+\label{eq5}\tag{5}
+\end{align*}
+$$
+
++ > `Secuencia escalón unitario`:
+
+$$
+\begin{align*}
+u[n] &= \begin{cases}
+1, & \text{para } n \ge 0 \\
+0, & n < 0
+\label{eq6}\tag{6}
+\end{cases}
+\end{align*}
+$$
+
++ > La secuencia $u[n]$ está relacionada a la secuencia impulso $\delta[n]$:
+
+$$
+\begin{align*}
+u\,[\,n\,] \, &=\, \delta\,[\,n\,] + \delta\,[\,n-1\,]+ \delta\,[\,n-2\,]+\ldots 
+\label{eq7a}\tag{7a}
+\end{align*}
+$$
+
++ > O bien,
+
+$$
+\begin{align*}
+u\,[\,n\,]\, &=\, \sum_{k=0}^{\infty} \delta\,[\,n-k\,]
+\label{eq7b}\tag{7b}
+\end{align*}
+$$
+
+> + Además, la secuencia impulso unitario, se puede expresar como:
+
+$$
+\begin{align*}
+\delta\,[\,n\,] \, &=\, u\,[\,n\,] - u\,[\,n-1\,]
+\label{eq8}\tag{8}
+\end{align*}
+$$
+
+# Sistemas
+
++ > Un `sistema` es un proceso que transforma una señal en otra señal.
+
++ > Al igual que en el caso de las señales, los `sistemas de tiempo continuo` son aquellos sistemas para los que la entrada y la salida son señales de tiempo continuo.
+
++ > Y los `sistemas de tiempo discreto` son aquellos sistemas para los que la entrada y la salida son señales de tiempo discreto.
+
++ > Se representa un sistema de manera gráfica en la forma de relaciones de `Entrada` y `Respuesta`.
+
+![Figura Sistema](sistema.png)
+
+```{note}
+Por conveniencia, la señal de entrada se suele etiquetar como $x\,[\,n\,]$ mientras que la señal de salida, se etiqueta como $y\,[\,n\,]$.
+```
+
+## Propiedades de los sistemas
+
++ > `Aditividad:` Esto significa que cuando al sistema se le da la suma de diferentes señales de entrada, el resultado es la suma de las salidas de cada entrada por separado:
+
+<img src="add.png" alt= “” width="1200" height="200">
+
++ > `Escalamiento:` Quiere decir que cuando uno multiplica por un escalar $c$ una señal de entrada a un sistema, la salida también se multiplica por el mismo escalar:
+
+<img src="scaling.png" alt= “” width="400" height="100">
+
++ > `Sistema Lineal y Principio de Superposición:` Se refiere a que si las respuestas de un sistema son $y_1[n]$ e $y_2[n]$, cuando $x_1[n]$ y $x_2[n]$ son las entradas respectivas, entonces el sistema es `lineal` si y sólo si se cumplen las propiedades de aditividad y escalamiento, tal como se observa en las Ecs. (9) y (10):
+
+$$
+\begin{align*}
+T\{x_1\,[\,n\,] + x_2\,[\,n\,]\} \, &=\, T\{x_1\,[\,n\,]\} \, + \, T\{x_2\,[\,n\,]\}
+\label{eq9}\tag{9}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+T\{c\,\cdot x\,[\,n\,]\} \, &=\, c\,\cdot T\{x\,[\,n\,]\}
+\label{eq10}\tag{10}
+\end{align*}
+$$
+
++ > Estas dos propiedades se pueden combinar en el `Principio de Superposición:`
+
+$$
+\begin{align*}
+T\{c_1\,\cdot x_1\,[\,n\,] + c_2\,\cdot x_2\,[\,n\,]\} \, &=\, c_1\,\cdot T\{x_1\,[\,n\,]\} + c_2\,\cdot T\{x_2\,[\,n\,]\}
+\label{eq11}\tag{11}
+\end{align*}
+$$
+
+donde $c_1$ y $c_2$ son escalares arbitrarios.
+
++ > Este Principio de Superposición se puede generalizar a muchas entradas. Específicamente, si
+
+$$
+\begin{align*}
+x\,[\,n\,]\, &=\, \sum_{k}^{} c_k \, x_k\,[\,n\,]
+\label{eq12}\tag{12}
+\end{align*}
+$$
+
+entonces:
+
+$$
+\begin{align*}
+y\,[\,n\,]\, &=\, \sum_{k}^{} c_k \, y_k\,[\,n\,]
+\label{eq13}\tag{13}
+\end{align*}
+$$
+
++ > `Invariancia en el tiempo:` Esta propiedad se refiere a que un sistema es `invariante en el tiempo` si cumple con que un cambio de tiempo arbitrario en la señal de entrada dada, va a producir el mismo cambio de tiempo en la salida. Si $y\,[\,n\,] \,=\, T\{x\,[\,n\,]\}$, entonces $y\,[\,n\,-\,n_0\,] \,=\, T\{x\,[\,n\,-\,n_0\,]\}$, donde $n_0$ es un corrimiento arbitrario de tiempo.
+
+## Sistemas Lineales e Invariantes en el Tiempo
+
++ > Representan una clase de sistemas muy importantes en procesamiento de señales. Se dice que un sistema que posee las dos propiedades: `linealidad` e `invariancia en el tiempo`, es un sistema lineal e invariante en el tiempo. También se les identifica como o `sistemas LTI`.
+
++ > Los `sistemas LTI` siempre se consideran con respecto a la `respuesta de impulso unitario`. Esto quiere decir que cuando la entrada es la señal de impulso unitario, entonces la salida es la respuesta de impulso.
+
+![Figura Sistema](h.png)
+
++ > En la figura, la entrada al sistema es una señal de impulso, $x\,[\,n\,] = \delta\,[\,n\,]$, y la salida es la respuesta del sistema al impulso:
+
+$$
+\begin{align*}
+y\,[\,n\,]\, &=\, h\,[\,n\,]= T\{\delta\,[\,n\,]\}
+\label{eq14}\tag{14}
+\end{align*}
+$$
+-->
+<!---
+## Learn more
+
+This is just a simple starter to get you started.
+You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
+-->
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="clase2.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Señales y Sistemas</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Víctor Poblete Ramírez, Esteban Vargas Carrera, Diego Espejo Alquinta
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
